@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- 修正版 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 管理画面専用のCSSがあればここに追加（既存のstyle.cssも活用） -->
+     <link rel="icon" href="/favicon2.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="css/news.css">
+    <!-- 管理画面用の微調整CSSを後で作ると便利です -->
+    <!-- <link rel="stylesheet" href="css/admin-home.css">  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <title>Mii's Dashboard - 管理画面</title>
+</head>
+<body class="admin-body">
+
+<div class="parallax-bg"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-text">
+        <img src="img/index/logo.png" alt="Logo">
+        <span class="header-text">Mii's Dashboard</span>
+    </div>
+
+    <nav class="nav">
+      <a href="../../../../public/index.html" target="_blank">公開サイトを確認</a>
+      <a href="#" id="logoutBtn" style="color: #ff4fa3;">ログアウト</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container admin-container">
+    <!-- 1. お知らせ管理セクション -->
+    <div class="admin-header-flex">
+        <h1 class="title">News Management</h1>
+        <button class="admin-add-btn" id="add-news-btn">+ 新規投稿</button>
+    </div>
+    
+    <section class="news-section">
+        <div id="news-list-admin" class="news-list">
+            <!-- JSで編集・削除ボタン付きのNewsを生成 -->
+        </div>
+    </section>
+
+    <hr class="admin-hr">
+
+    <!-- 2. ポートフォリオ管理セクション -->
+    <div class="admin-header-flex">
+        <h1 class="title">Portfolio Management</h1>
+        <button class="admin-add-btn" id="add-work-btn">+ 作品追加</button>
+    </div>
+
+    <div id="tagFilter"></div>
+
+    <!-- 各セクションからスクロールボタンを削除し、Grid表示用のクラスを付与 -->
+    <section class="section admin-work-section" data-type="illust">
+        <h2>イラスト</h2>
+        <div class="works-admin-grid" id="admin-illust-list"></div>
+    </section>
+
+    <section class="section admin-work-section" data-type="web">
+        <h2>Webサイト・アプリ</h2>
+        <div class="works-admin-grid" id="admin-web-list"></div>
+    </section>
+
+    <section class="section admin-work-section" data-type="video">
+        <h2>動画</h2>
+        <div class="works-admin-grid" id="admin-video-list"></div>
+    </section>
+
+    <section class="section admin-work-section" data-type="graphic">
+        <h2>グラフィックデザイン</h2>
+        <div class="works-admin-grid" id="admin-graphic-list"></div>
+    </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="copyright">
+      <p>&copy; 2026 Mii - Administrator Mode</p>
+    </div>
+  </div>
+</footer>
+
+<!-- 編集用モーダル（クリックで開く専用ページの中身） -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="close-modal">&times;</span>
+        <h2 id="modal-title">作品の編集</h2>
+        <form id="edit-form">
+            <div class="form-group">
+                <label>タイトル</label>
+                <input type="text" id="edit-work-title">
+            </div>
+            <div class="form-group">
+                <label>カテゴリー</label>
+                <select id="edit-work-type">
+                    <option value="illust">イラスト</option>
+                    <option value="web">Web</option>
+                    <option value="video">動画</option>
+                    <option value="graphic">グラフィック</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>画像/動画URL</label>
+                <input type="text" id="edit-work-url">
+            </div>
+            <div class="form-group">
+                <label>説明文</label>
+                <textarea id="edit-work-desc" rows="4"></textarea>
+            </div>
+            <div class="admin-modal-btns">
+                <button type="button" class="delete-btn" id="delete-work-btn">削除する</button>
+                <button type="submit" class="save-btn">保存する</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 管理画面専用のロジック -->
+ <script src="/js/admin-home.js"></script>
+<script type="module" src="/heart_bg.js"></script>
+<script type="module" src="/logout.js"></script>
+</body>
+</html>

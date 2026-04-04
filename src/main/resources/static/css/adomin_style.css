@@ -1,0 +1,186 @@
+:root {
+    --neon-pink: #ff4fa3;
+    --dark-void: #050005;
+}
+
+.genius-body {
+    /* background-color: var(--dark-void); */
+    color: var(--neon-pink);
+    font-family: 'Kaisei Decol', serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.genius-interface {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    justify-content: center; 
+    text-align: center;   
+    gap: 40px;          
+}
+
+.step-trigger{
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 中の画像を中央へ */
+}
+
+/* メインロゴの鼓動 */
+.main-glow-logo {
+    display: block; /* flexではなくblockの方が画像には安定します */
+    width: 200px;
+    aspect-ratio: 1 / 1; /* ロゴが正方形なら 1/1、横長なら 2/1 など実際の比率 */
+    
+    /* 以下は既存のまま */
+    filter: drop-shadow(0 0 15px var(--neon-pink));
+    animation: pulse 3s infinite ease-in-out;
+    cursor: pointer;
+    margin: 0 auto; /* block要素を中央に寄せる念押し */
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px var(--neon-pink)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 30px var(--neon-pink)); }
+}
+
+/* 到着者数 */
+.glitch-num {
+    font-size: 4rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: bold;
+    text-shadow: 2px 2px #fff;
+}
+
+.counter-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 右下のハート（小さく、でも重要） */
+#trigger-heart {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: 0.3s;
+}
+#trigger-heart:hover { opacity: 1; text-shadow: 0 0 10px var(--neon-pink); }
+
+/* 隠しフォーム */
+.hidden-panel {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 79, 163, 0.1);
+    border: 1px solid var(--neon-pink);
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    z-index: 100;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-group input {
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 背景コンテナの設定 */
+.heart-rising-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000; /* 真っ黒な宇宙のような背景 */
+    background-color: var(--dark-void);
+    overflow: hidden;
+    z-index: -1; /* コンテンツの裏側に回す */
+}
+
+/* ハートの共通スタイル（CSSでハートを描く） */
+.heart {
+    position: absolute;
+    bottom: -100px; /* 画面の下外からスタート */
+    width: 20px;
+    height: 20px;
+    background-color: var(--heart-color, #ff4fa3); /* デフォルトはピンク */
+    transform: rotate(-45deg);
+    /* 鼓動するようなアニメーションも薄くかける */
+    animation: heartRise linear infinite, heartPulse 2s infinite ease-in-out;
+    filter: drop-shadow(0 0 5px var(--heart-color, #ff4fa3));
+    opacity: 0.8;
+}
+
+/* ハートの形を作るための疑似要素 */
+.heart::after,
+.heart::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: inherit;
+    border-radius: 50%;
+}
+
+.heart::after {
+    top: -10px;
+    left: 0;
+}
+
+.heart::before {
+    top: 0;
+    left: 10px;
+}
+
+/* --- アニメーション1: 下から上へ昇る --- */
+@keyframes heartRise {
+    0% {
+        transform: translateY(0) rotate(-45deg);
+        opacity: 0; /* スタート時は透明 */
+    }
+    10% {
+        opacity: 0.8; /* すぐに不透明に */
+    }
+    90% {
+        opacity: 0.8; /* 消えかかる前まで不透明 */
+    }
+    100% {
+        /* 画面の上外（120vh分上）まで移動 */
+        transform: translateY(-120vh) rotate(-45deg);
+        opacity: 0; /* 消える */
+    }
+}
+
+/* --- アニメーション2: 鼓動（Pulse） --- */
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1) rotate(-45deg); }
+    50% { transform: scale(1.1) rotate(-45deg); }
+}
+
+/* --- カラーバリエーション（JSでクラスを付与する） --- */
+.heart.color-1 { --heart-color: #ff4fa3; } /* ネオンピンク */
+.heart.color-2 { --heart-color: #00f2fe; } /* シアンブルー */
+.heart.color-3 { --heart-color: #4facfe; } /* ブルー */
+.heart.color-4 { --heart-color: #b06ab3; } /* パープル */
+.heart.color-5 { --heart-color: #ffd700; } /* ゴールド */

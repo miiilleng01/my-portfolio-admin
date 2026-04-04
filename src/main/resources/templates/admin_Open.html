@@ -1,0 +1,62 @@
+<!-- 管理者画面入り口 -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="adomin_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <title>Mii'sCamvas</title>
+</head>
+<body class="genius-body">
+    <div id="heart-bg" class="heart-rising-bg"></div>
+    <div class="neural-bg"></div>
+
+    <main class="genius-interface">
+        <div id="genius-wrap">
+            <div class="step-trigger" id="trigger-logo">
+                <img src="img/logo.png" alt="GENIUS LOGO" class="main-glow-logo">
+            </div>
+
+            <div class="counter-section step-trigger" id="trigger-counter">
+                <p class="congrats-text">おめでとう！あなたはここに到達した</p>
+                <div class="count-wrapper">
+                    <span id="arrival-count" class="glitch-num">0000</span>
+                    <span class="unit">人目の天才です！</span>
+                </div>
+            </div>
+
+                <div id="secret-login-form" class="hidden-panel">
+                <h2 class="form-title">SYSTEM AUTHENTICATION</h2>
+                <div class="input-group">
+                    <label for="admin-id">USER ID</label>
+                    <input type="text" id="admin-id" placeholder="IDを入力...">
+                </div>
+                <div class="input-group">
+                    <label for="admin-pass">PASSWORD</label>
+                    <div class="pass-wrapper" style="display: flex; gap: 10px;">
+                        <input type="password" id="admin-pass" placeholder="********">
+                        <button type="button" id="toggle-pass">👁️</button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="admin-kotoba">PASS CODE（合言葉）</label>
+                    <input type="text" id="admin-kotoba" placeholder="合言葉をどうぞ">
+                </div>
+                <button id="login-submit" class="login-btn">ENTER SYSTEM</button>
+            </div>
+        </div>
+        
+
+        <div class="step-trigger" id="trigger-heart">
+            <span class="heart-icon">♥</span>
+        </div>
+    </main>
+    <script src="admin_logic.js"></script>
+</body>

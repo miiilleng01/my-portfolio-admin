@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+
+<h2>作品追加</h2>
+
+<form id="uploadForm">
+
+<select name="type" id="type">
+
+<option value="illust">illust</option>
+<option value="web">web</option>
+<option value="movie">movie</option>
+<option value="graphic">graphic</option>
+
+</select>
+
+<input name="title" placeholder="title">
+
+<textarea name="description"></textarea>
+
+<input name="tags" placeholder="tag1,tag2">
+
+<input name="link" placeholder="link">
+
+<input type="file" name="image" id="image">
+
+<!-- サムネ -->
+<div id="thumbArea" style="display:none">
+  <p>サムネイル</p>
+  <input type="file" name="thumbnail">
+</div>
+
+<button>upload</button>
+
+</form>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
