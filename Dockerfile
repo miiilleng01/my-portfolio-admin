@@ -4,7 +4,7 @@ WORKDIR /app
 COPY . .
 RUN mvn clean install -DskipTests
 
-# 2. 実行用 (Java 21 を指定)
+# 2. 実行用 (Java 21)
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
