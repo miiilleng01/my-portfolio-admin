@@ -11,10 +11,11 @@ WORKDIR /app
 # ビルドした jar ファイルをコピー
 COPY --from=build /app/target/*.jar app.jar
 
-RUN chmod -R 755 /app/uploads
+# ★先に「コピー」をしてから！
+COPY --from=build /app/uploads ./uploads
 
-# ★ここが最重要！GitHubから持ってきた uploads フォルダを実行環境にもコピーするニャ！
-# COPY --from=build /app/uploads ./uploads
+# ★その後に「権限変更」をするニャ！
+RUN chmod -R 755 /app/uploads
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
