@@ -2,10 +2,11 @@ package com.example.admin.adminHome;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "works")
-@Data // Getter, Setterを自動生成（Lombokがない場合は手動で書いてニャ）
+@Data
 public class Work {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +14,19 @@ public class Work {
 
     private String title;
     private String description;
-    private String image; // ここに "illust/deep_sea.jpg" が入る
-    private String link;
-    private String type;
+    private String image;       // メイン画像パス
+    private String thumbnail;   // サムネイル画像パス（追加！）
+    private String link;        // YouTubeなどのリンク
+    private String type;        // illust, video, etc...
     
-    // tagsは一旦簡易的にStringで受けるか、必要ならListに変換してニャ
-    private String[] tags; 
+    // DBのlike_countカラムと紐付け（追加！）
+    @Column(name = "like_count")
+    private Integer likeCount = 0;
+
+    // NEWラベル判定用の時間（追加！）
+    @Column(name = "created_at")
+    private LocalDateTime time;
+
+    // タグはDB上は文字列（カンマ区切り）で保存されてることが多いからStringで受けるニャ
+    private String tags; 
 }
