@@ -5,5 +5,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkRepository extends JpaRepository<Work, Integer> {
-    // 基本的な保存・取得はこれだけでOKニャ！
 }
