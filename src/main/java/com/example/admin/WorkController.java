@@ -1,7 +1,7 @@
 package com.example.admin;
 
-import com.example.admin.work.Work;
-import com.example.admin.work.WorkRepository;
+import com.example.admin.adminHome.Work;
+import com.example.admin.adminHome.WorkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
