@@ -9,27 +9,24 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api") // これでURLの先頭が /api になるニャ
+@RequestMapping("/api") 
 public class WorkController {
 
     @Autowired
     private WorkRepository workRepository; // DB操作用のリポジトリ
 
     /**
-     * IDを指定して作品を1個だけ取得するニャ
-     * GET https://.../api/works/1001
+     * IDを指定して作品を1個だけ取得
      */
     @GetMapping("/works/{id}")
-    public ResponseEntity<Work> getWorkById(@PathVariable("id") Long id) {
-        // DBから探して、いればデータを、いなければ404を返すニャ
+    public ResponseEntity<Work> getWorkById(@PathVariable("id") Integer id) {
         return workRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     /**
-     * 作品一覧を全部取得するニャ（portfolio.html用）
-     * GET https://.../api/works
+     * 作品一覧を全部取得
      */
     @GetMapping("/works")
     public List<Work> getAllWorks() {
