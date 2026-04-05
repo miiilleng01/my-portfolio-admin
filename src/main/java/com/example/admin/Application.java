@@ -14,12 +14,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class Application {
 
     public static void main(String[] args) {
+        // Spring Bootアプリケーション（JPA/SQLモード）を開始
         SpringApplication.run(Application.class, args);
         
         System.out.println("=======================================");
-        System.out.println("    GENIUS BACKEND (SQL) IS RUNNING!    ");
-        System.out.println("    Port: 8080                          ");
-        System.out.println("    Connecting to: PortfolioDB (PG)     ");
+        System.out.println("   GENIUS BACKEND (SQL) IS RUNNING!    ");
+        System.out.println("   Port: 8080                          ");
+        System.out.println("   Connecting to: PortfolioDB (PG)     ");
         System.out.println("=======================================");
     }
 
@@ -31,11 +32,11 @@ public class Application {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // 全てのAPIエンドポイントを対象にする
-                        .allowedOrigins("https://msddmii-portfolio.com") // Miiさんのポートフォリオサイトを許可
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 必要なメソッドを全て許可
-                        .allowedHeaders("*") // 全てのヘッダーを許可
-                        .allowCredentials(true); // クッキーなどが必要な場合も考慮
+                registry.addMapping("/**") 
+                        .allowedOrigins("https://msddmii-portfolio.com")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
